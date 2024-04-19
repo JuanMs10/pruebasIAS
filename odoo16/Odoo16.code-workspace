@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "addons/Custom"
+		},
+		{
+			"path": "addons/odoo-enterprise"
+		}
+	]
+}

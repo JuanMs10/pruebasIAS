@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="citas_view" model="ir_ui_view">
+        <field name="name">citas</field>
+        <field name="model"></field>
+        <field name="arch" type="xml">
+            <field name="num_reserva">Numero de Reserva</field>
+            <field name="doctor">Doctor</field>
+            <field name="responsable">Responsable</field>
+            <field name="fecha">Fecha</field>
+            <field name="hora_inicio">Hora de Inicio</field>
+            <field name="hora_fin">Hora de Finalizacion</field>
+            <field name="consultorio">Numero de consultorio</field>
+            <field name="costo_reserva">Costp de la Reserva</field>
+            <field name="especialidad">Especialidad</field>
+            <field name="estado" widget="statusbar"/>
+        </field>
+    </record>
+    
+
+</odoo>
