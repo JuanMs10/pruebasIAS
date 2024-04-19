@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+
+  odoo16-db:
+    image: postgres:12
+    container_name: odoo16-db-pruebas
+    environment:
+      - POSTGRES_PASSWORD=odoo16
+      - POSTGRES_USER=odoo16
+      - POSTGRES_DB=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+     - "5440:5432"
+    expose:
+     - "5440"
+    volumes:
+      - odoo16-web-db-data:/var/lib/postgresql/data/
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
+  odoo16-web:
+    container_name: odoo16-web-test
+    build:
+      context: odoo-16.0
+    links:
+      - odoo16-db
+    depends_on:
+      - odoo16-db
+    ports:
+     - "9006:9006"
+     - "19006:19006"
+     - "8886:8886"
+    expose:
+      - "9006"
+      - "19006"
+      - "8886"
+    volumes:
+      - odoo16-web-web-data:/var/lib/odoo
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+      # Modificar segun la ubicacion de los modulos
+      - ./addons:/mnt/extra-addons
+
+    stdin_open: true
+    tty: true
+    
+    environment:
+      - PGHOST=odoo16-db:5432
+      - ODOO_CONFIG_DIR=/etc/odoo/
+      - ODOO_CONFIG=odoo.conf
+      - CRYPTOGRAPHY_DONT_BUILD_RUST=1
+
+
+   # Para actualizar los modulos de la base de datos -u "nombre del modulo a actualizar"
+   # Para visualizar pdb -> docker attach container_id 
+    command: -c /etc/odoo/odoo.conf
+volumes:
+  odoo16-web-web-data:
+  odoo16-web-db-data:

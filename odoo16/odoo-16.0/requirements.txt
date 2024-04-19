@@ -1,0 +1,12 @@
+jsonschema==3.2.0
+PyJWT==2.0.1
+pyOpenSSL
+cryptography==3.4.6
+suds
+pandas
+bitly-api-py3
+pdfminer
+openpyxl
+openupgradelib
+odoo_test_helper
+lxml==4.6.5
